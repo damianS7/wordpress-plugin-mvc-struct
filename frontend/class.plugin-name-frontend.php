@@ -25,7 +25,7 @@ class PluginName_Frontend {
         return $wp_query->get($var, $default);
     }
 
-    public function custom_rewrite() {
+    public function rewrite_rules() {
         $plugin_page_id = 222;
         add_rewrite_rule(
             '^plugin-name/([^/]*)/?',
@@ -41,7 +41,7 @@ class PluginName_Frontend {
     }
 
     public function init() {
-        add_action('init', array( $this, 'custom_rewrite' ));
+        add_action('init', array( $this, 'rewrite_rules' ), 9999);
         add_filter('query_vars', array( $this, 'add_custom_query_var'));
         add_shortcode('myshortcode', array($this, 'view_controller'));
 
